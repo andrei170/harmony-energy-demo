@@ -51,16 +51,18 @@ a{color:inherit}
 
 /* hero */
 .hero{background:linear-gradient(168deg,#f3f7fc 0%,#fff 62%);border-bottom:1px solid var(--line);
-  padding:60px 0 54px;position:relative;overflow:hidden}
+  padding:48px 0 54px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;right:-180px;top:-140px;width:560px;height:560px;
   border-radius:50%;background:radial-gradient(circle,rgba(31,95,208,.09),transparent 68%)}
 .heroin{max-width:1140px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+.herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
+@media(max-width:980px){.herogrid{grid-template-columns:1fr;gap:30px}}
 .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--brand-sf);color:var(--brand-dk);
   font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
   padding:7px 13px;border-radius:999px;margin-bottom:19px}
-.hero h1{font-size:clamp(31px,4.6vw,52px);max-width:16ch;margin-bottom:19px}
-.lede{font-size:clamp(16.5px,1.9vw,19.5px);color:var(--body);max-width:60ch;margin-bottom:26px}
-.herocta{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.hero h1{font-size:clamp(29px,4vw,45px);max-width:17ch;margin-bottom:18px}
+.lede{font-size:clamp(16.5px,1.9vw,19px);color:var(--body);max-width:58ch;margin-bottom:24px}
+.herocta{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
 .btn{display:inline-flex;align-items:center;gap:9px;background:var(--brand);color:#fff;border:0;
   font:inherit;font-weight:700;font-size:16px;padding:15px 27px;border-radius:11px;
   text-decoration:none;cursor:pointer;box-shadow:var(--sh)}
@@ -71,6 +73,21 @@ a{color:inherit}
 .bdg{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
   color:var(--ink);font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:999px;box-shadow:var(--sh)}
 .bdg .ic{width:16px;height:16px;color:var(--good)}
+
+/* hero-form card (the eligibility check, moved to the top of the page) */
+.hform{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 26px 24px;
+  box-shadow:var(--sh-lg);position:relative}
+.hform .kicker{background:var(--good-sf);color:var(--good);margin-bottom:14px}
+.hform h2{font-size:22px;margin-bottom:8px;max-width:24ch}
+.hform>p{font-size:14.8px;color:var(--mut);margin-bottom:18px;line-height:1.55}
+.hform .form{max-width:none;margin-top:0}
+.hform .form input,.hform .form select{background:#fff;border:1.5px solid var(--line);color:var(--ink);
+  font-size:15px;padding:13px 14px}
+.hform .form input::placeholder{color:#8b96a3}
+.hform .form select{color:var(--ink)}
+.hform .fnote{color:var(--mut);font-size:13.5px;margin-top:14px}
+.hform .fnote b{color:var(--ink)}
+@media(max-width:520px){.hform{padding:22px 18px 20px}}
 
 /* trust strip */
 .strip{background:var(--ink);color:#e6ecf3;padding:26px 0}
@@ -121,8 +138,8 @@ a{color:inherit}
 @media(max-width:520px){.steps{grid-template-columns:1fr}}
 
 /* quote / form */
-.quote{background:linear-gradient(160deg,var(--ink),#1b2431);color:#dfe7f0;padding:62px 0}
-.quote h2{color:#fff;font-size:clamp(24px,3vw,34px);margin-bottom:11px}
+.quote{background:linear-gradient(160deg,var(--ink),#1b2431);color:#dfe7f0;padding:40px 0}
+.quote h2{color:#fff;font-size:clamp(21px,2.6vw,27px);margin-bottom:11px}
 .quote .shead p{color:#a9b8c8}
 .form{display:grid;grid-template-columns:1fr 1fr;gap:13px;max-width:720px;margin-top:8px}
 .form input,.form select{width:100%;padding:14px 15px;border-radius:10px;border:1px solid #2e3a49;
@@ -179,9 +196,11 @@ a{color:inherit}
 .final a{color:#fff}
 
 /* footer note */
-.legal{background:var(--soft);padding:32px 22px;font-size:13px;color:var(--mut);
-  max-width:1000px;margin:0 auto;line-height:1.66}
-.legal b{color:var(--body)}
+.legal{background:var(--soft);padding:34px 22px}
+.legal .in{max-width:1000px;margin:0 auto}
+.legal p{font-size:13.8px;color:#525c68;line-height:1.72;margin-bottom:14px}
+.legal p:last-child{margin-bottom:0}
+.legal b{color:var(--ink);font-weight:600}
 </style>
 </head><body>
 <svg class="sprite" aria-hidden="true"><defs>
@@ -221,23 +240,55 @@ a{color:inherit}
   <a class="call" href="tel:6035123377"><svg class="ic"><use href="#i-phone"></use></svg> (603) 512-3377</a>
 </div></nav>
 
-<header class="hero"><div class="heroin">
-  <div class="kicker"><svg class="ic"><use href="#i-award"></use></svg> NABCEP certified &middot; NH, Maine &amp; Massachusetts</div>
-  <h1>A grant may fund a large share of your solar project. Most business owners never find out.</h1>
-  <p class="lede">The USDA Rural Energy for America Program funds renewable energy projects for eligible rural small
-  businesses and agricultural producers. We have taken commercial customers through it before &mdash; and we will
-  tell you honestly, for free, whether your business is likely to qualify.</p>
-  <div class="herocta">
-    <a class="btn" href="#quote">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></a>
-    <a class="btn btn-ghost" href="tel:6035123377"><svg class="ic"><use href="#i-phone"></use></svg> (603) 512-3377</a>
+<header class="hero"><div class="heroin"><div class="herogrid">
+  <div>
+    <div class="kicker"><svg class="ic"><use href="#i-award"></use></svg> NABCEP certified &middot; NH, Maine &amp; Massachusetts</div>
+    <h1>A grant may fund a large share of your solar project. Most business owners never find out.</h1>
+    <p class="lede">The USDA Rural Energy for America Program funds renewable energy projects for eligible rural small
+    businesses and agricultural producers. We have taken commercial customers through it before &mdash; and we will
+    tell you honestly, for free, whether your business is likely to qualify.</p>
+    <div class="herocta">
+      <a class="btn" href="#check">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></a>
+      <a class="btn btn-ghost" href="tel:6035123377"><svg class="ic"><use href="#i-phone"></use></svg> (603) 512-3377</a>
+    </div>
+    <div class="badges">
+      <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> NABCEP certified installers</span>
+      <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Commercial PV &amp; solar hot water</span>
+      <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Grant applications supported</span>
+      <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Designed in-house</span>
+    </div>
   </div>
-  <div class="badges">
-    <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> NABCEP certified installers</span>
-    <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Commercial PV &amp; solar hot water</span>
-    <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Grant applications supported</span>
-    <span class="bdg"><svg class="ic"><use href="#i-check"></use></svg> Designed in-house</span>
+
+  <div class="hform" id="check">
+    <div class="kicker"><svg class="ic"><use href="#i-check"></use></svg> No cost, no obligation</div>
+    <h2>Find out if your business could qualify.</h2>
+    <p>Four short questions and a phone call. If the answer is no, you will hear that on the first call &mdash; not
+    after a site visit and a proposal.</p>
+    <form class="form" onsubmit="return false">
+      <input type="text" placeholder="Your name" aria-label="Your name">
+      <input type="tel" placeholder="Phone number" aria-label="Phone number">
+      <input class="full" type="text" placeholder="Business name" aria-label="Business name">
+      <select aria-label="Business type">
+        <option>What kind of business?</option>
+        <option>Farm or agricultural producer</option>
+        <option>Manufacturing or light industrial</option>
+        <option>Warehouse or distribution</option>
+        <option>Retail, hospitality or food service</option>
+        <option>Office or professional</option>
+        <option>Municipal or non-profit</option>
+      </select>
+      <select aria-label="Monthly electricity bill">
+        <option>Roughly what is the monthly electricity bill?</option>
+        <option>Under $500</option>
+        <option>$500 to $2,000</option>
+        <option>$2,000 to $10,000</option>
+        <option>Over $10,000</option>
+      </select>
+      <button class="btn full" type="submit">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></button>
+    </form>
+    <p class="fnote">Or call <b>(603) 512-3377</b> and speak to a NABCEP certified installer directly.</p>
   </div>
-</div></header>
+</div></div></header>
 
 <div class="strip"><div class="stripin">
   <div class="fact"><svg class="ic"><use href="#i-award"></use></svg><div><b>NABCEP</b><span>Nationally certified PV installers, in-house</span></div></div>
@@ -282,38 +333,13 @@ a{color:inherit}
   </div>
 </section>
 
-<section class="quote" id="quote">
-  <div class="wrap">
-    <div class="shead">
-      <div class="kicker" style="background:rgba(127,178,255,.16);color:#cfe0fb"><svg class="ic"><use href="#i-check"></use></svg> No cost, no obligation</div>
-      <h2>Find out whether your business could qualify.</h2>
-      <p>Four questions and a phone call. If the answer is no, you will hear that on the first call rather than after
-      a site visit and a proposal.</p>
+<section class="quote">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div>
+      <h2 style="margin-bottom:6px">Still deciding? The eligibility check costs nothing.</h2>
+      <p style="color:#a9b8c8;font-size:15.5px">Four questions, one phone call, an honest answer &mdash; before anyone talks about panels.</p>
     </div>
-    <form class="form" onsubmit="return false">
-      <input type="text" placeholder="Your name" aria-label="Your name">
-      <input type="tel" placeholder="Phone number" aria-label="Phone number">
-      <input class="full" type="text" placeholder="Business name" aria-label="Business name">
-      <select aria-label="Business type">
-        <option>What kind of business?</option>
-        <option>Farm or agricultural producer</option>
-        <option>Manufacturing or light industrial</option>
-        <option>Warehouse or distribution</option>
-        <option>Retail, hospitality or food service</option>
-        <option>Office or professional</option>
-        <option>Municipal or non-profit</option>
-      </select>
-      <select aria-label="Monthly electricity bill">
-        <option>Roughly what is the monthly electricity bill?</option>
-        <option>Under $500</option>
-        <option>$500 to $2,000</option>
-        <option>$2,000 to $10,000</option>
-        <option>Over $10,000</option>
-      </select>
-      <button class="btn full" type="submit">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></button>
-    </form>
-    <p class="fnote">Or call <b style="color:#fff">(603) 512-3377</b> and speak to a NABCEP certified installer
-    directly. If your business is unlikely to qualify we will say so rather than sell you something else.</p>
+    <a class="btn" href="#check">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></a>
   </div>
 </section>
 
@@ -381,23 +407,25 @@ a{color:inherit}
     </div>
     <div class="grid3">
       <div class="card">
+        <span class="lbl" style="color:var(--brand-dk)">Template &middot; your project</span>
         <div class="cicon"><svg class="ic"><use href="#i-home"></use></svg></div>
         <h3>Commercial install</h3>
         <ul class="ticks">
-          <li>[ Business type and location ]</li>
-          <li>[ System size and annual output ]</li>
-          <li>[ Timescale from survey to commissioning ]</li>
-          <li>[ Whether grant funding was involved ]</li>
+          <li>Business type and location</li>
+          <li>System size and annual output</li>
+          <li>Timescale from survey to commissioning</li>
+          <li>Whether grant funding was involved</li>
         </ul>
       </div>
       <div class="card">
+        <span class="lbl" style="color:var(--brand-dk)">Template &middot; your project</span>
         <div class="cicon"><svg class="ic"><use href="#i-sun"></use></svg></div>
         <h3>Agricultural install</h3>
         <ul class="ticks">
-          <li>[ Business type and location ]</li>
-          <li>[ System size and annual output ]</li>
-          <li>[ Timescale from survey to commissioning ]</li>
-          <li>[ Whether grant funding was involved ]</li>
+          <li>Business type and location</li>
+          <li>System size and annual output</li>
+          <li>Timescale from survey to commissioning</li>
+          <li>Whether grant funding was involved</li>
         </ul>
       </div>
       <div class="card">
@@ -445,22 +473,23 @@ a{color:inherit}
     <h2>Find out if you qualify before you think about panels.</h2>
     <p>Call George on <a href="tel:6035123377">(603) 512-3377</a>, or send your details and we will tell you
     honestly.</p>
-    <a class="btn" href="#quote">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></a>
+    <a class="btn" href="#check">Check if we qualify <svg class="ic"><use href="#i-arrow"></use></svg></a>
   </div>
 </section>
 
-<div class="legal">
-  <b>Concept site prepared by AG1 Consulting for George Horrocks, 29 September 2026.</b> This is a design and
-  structure proposal, not a live website and not a finished product. <b>The phone number, NABCEP certification, the
-  three-state coverage, the solar PV and solar hot water services and the prior USDA REAP grant involvement are taken
-  from Harmony Energy Works' own website and the booking record supplied to AG1, and have not been independently
-  verified.</b>
-  <b>&#9888; AG1 has NOT verified current USDA REAP programme terms, eligibility criteria, funding levels or
+<div class="legal"><div class="in">
+  <p><b>Concept site prepared by AG1 Consulting for George Horrocks, 29 September 2026.</b> This is a design and
+  structure proposal, not a live website and not a finished product.</p>
+  <p><b>The phone number, NABCEP certification, the three-state coverage, the solar PV and solar hot water services
+  and the prior USDA REAP grant involvement</b> are taken from Harmony Energy Works' own website and the booking
+  record supplied to AG1, and have not been independently verified.</p>
+  <p><b>&#9888; AG1 has NOT verified current USDA REAP programme terms</b>, eligibility criteria, funding levels or
   application windows, and every description of the programme above is deliberately general for that reason. Nothing
   on this page is advice on grant eligibility, and no funding decision rests with Harmony Energy Works or AG1. Any
-  live version would be written against the current published programme rules and reviewed before publication.</b>
-  <b>&#9888; All case-study fields are marked placeholders in square brackets and contain no invented system size,
-  output, saving, timescale or customer. Service areas and the described process are drafts to be confirmed. No
-  ranking, enquiry, call, grant award or revenue outcome is promised or implied anywhere on this page.</b>
-</div>
+  live version would be written against the current published programme rules and reviewed before publication.</p>
+  <p><b>&#9888; The commercial and agricultural install cards under &ldquo;Work we have completed&rdquo; are a
+  template</b>, not real projects, and contain no invented system size, output, saving, timescale or customer. Service
+  areas and the described process are drafts to be confirmed. No ranking, enquiry, call, grant award or revenue
+  outcome is promised or implied anywhere on this page.</p>
+</div></div>
 </body></html>
